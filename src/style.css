@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif&family=Arsenal:wght@400;700&family=Yanone+Kaffeesatz:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+:root {
+  --view-height: 100vh;
+  --view-width: 100vw;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+
+#cards {
+  display: flex;
+  overflow-x: auto;
+}
+
+
+/* Card style */
+
+.card {
+  position: relative;
+  overflow-y: auto;
+
+/* Just declare height with any value so card can be scrolled*/ 
+  height: var(--view-height);  
+  min-height: var(--view-height);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.card::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.card, .cards {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+
+/* Header style */
+
+.card .header {
+  position: relative;
+  user-select: none;
+  
+  border-radius: 9px;
+  width: calc(100% - 14px * 2);
+  height: calc(var(--view-height) - 14px * 2);
+  margin: 14px;
+
+  box-shadow: 0px 0px 4px rgba(0,0,0,0.9);
+  
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+}
+
+.card-menu .header {
+  background-image: url("https://i.pinimg.com/564x/54/14/d6/5414d6a4ce6a594e654080f9ab86cf2b.jpg");
+}
+
+.card .header .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  text-align: center;
+  font-size: 41pt;
+  color: white;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+.card .header .number {
+  position: absolute;
+  bottom: 8px;
+  right: 15px;
+  
+  text-align: center;
+  color: white;
+  font-size: 17pt;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
+}
+
+
+/* Content style */
+
+.card .content {
+  position: absolute;
+  width: 100%;
+  min-height: calc(var(--view-height) + 15px);
+  
+  background: white;
+  border-radius: 15px 15px 0 0;
+  
+  color: rgba(0,0,0,0.85);
+  font-size: 14.5pt;
+  font-family: 'PT serif', serif;
+  word-wrap: break-word;
+}
+
+.card .content .container {
+  height: content;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px 21px 15px 21px;
+}
+
+
+/* Markdown style */
+
+.card .content p>img {
+  width: 100%;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 9px;
+  border-radius: 10px;
+  transition: box-shadow 0.3s;
+}
+
+.card .content h1, h2, h3 {
+  text-align: center;
+}
+
+.card .content a {
+  text-decoration: none;
+  background: rgba(222, 192, 58, 0.3);
+  color: rgba(0,0,0,0.8);
+  
+  border-radius: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.card .content a:hover {
+  background: rgba(222, 181, 0, 0.3);
+  color: rgba(0,0,0,0.9);
+}
+
+.card .content hr {
+  opacity: 0;
+}
+
+
+/* Embeds */
+
+/* Google Map */
+
+.card .content .google-map {
+  border-radius: 15px;
+  width: 100%;
+}
+
+/* Custom flight embed */
+
+.card .content .travel-flight {
+  display: flex;
+  width: 100%;
+  height: 80px;
+
+  margin-top: 9px;
+  
+  justify-content: space-around;
+  align-items: center;
+  
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(180,180,180);
+  border-radius: 9px;
+  
+  font-size: 13pt;
+  font-family: 'Roboto', sans-serif;
+
+  user-select: none;
+  cursor: pointer;
+
+  transition: box-shadow 0.3s;
+}
+
+.card .content .travel-flight .logo {
+  height: 50%;
+  width: 40px;
+}
+
+.card .content .travel-flight img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.card .content .travel-flight .container {
+  display: flex;
+  
+  flex-direction: column;
+  justify-content: center;
+  
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.card .content .travel-flight .weak {
+  color: rgb(66,66,66);
+}
+
+
+/* Callout */
+
+.card .content .callout {
+  position: relative;
+
+  width: 100%;
+  height: 45px;
+  margin-top: 9px;
+
+  border-radius: 9px;
+
+  box-shadow: 0px 0px 2px rgba(0,0,0, 0.1);
+  background-color: rgba(222, 192, 58, 0.1);
+
+  font-size: 14pt;
+  font-family: 'Roboto', sans-serif;
+
+  user-select: none;
+  cursor: pointer;
+
+  transition: background-color 0.3s, border-width 0.3s;
+}
+
+.card .content .callout:hover {
+  background-color: rgba(222, 181, 0, 0.1); 
+  box-shadow: 1px 1px 1px rgba(0,0,0, 0.1);
+}
+
+.card .content .callout p {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translate(0%, -50%);
+}

@@ -1,0 +1,17 @@
+
+output_dir: dist/
+cards_dir: cards/
+
+patterns:
+  - src/category.html
+  - src/card.html
+
+styles:
+  - src/style.css 
+
+scripts:
+  - src/script.js
+
+content:
+  - src/favicon.png
+  - src/images/picture_to_draw.png
