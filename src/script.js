@@ -155,7 +155,7 @@ cards.each(function() {
 cards.each(function() {
   let card = this
   $(this).find(".header").on("tapend", function() {
-    if (view_width != card_width) { // Disable on mobiles
+    if (view_width > card_width) { // Disable on mobiles
       if ($(card).scrollTop() < 50) {
         $(card).animate({scrollTop: 0}, 150);
       }
