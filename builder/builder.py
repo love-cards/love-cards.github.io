@@ -62,7 +62,6 @@ class WebCardsBuilder:
 
         with open(os.path.join(category_dir, "category.yaml"), encoding='utf-8') as fp:
             config = yaml.full_load(fp.read())
-            category_title = config.get("title", "Untitled")
             category_name = config.get("name", os.path.basename(category_dir))
 
         for card in self._load_cards(category_dir):
@@ -84,7 +83,8 @@ class WebCardsBuilder:
         styles = tuple(self.styles.keys()) + (category_name + '.css', )
 
         layout_text = "<!-- GENERATED FILE -->\n" + self.patterns["category.html"] \
-            .replace("<!-- category-name -->", category_title) \
+            .replace("<!-- category-title -->", config.get("title", None) or "Untitled") \
+            .replace("<!-- category-emoji -->", config.get("emoji", None) or "✨") \
             .replace("<!-- styles -->", '\n'.join(style_link_pattern.format(p) for p in styles)) \
             .replace("<!-- scripts -->", '\n'.join(script_link_pattern.format(p) for p in self.scripts.keys())) \
             .replace("<!-- cards -->", '\n'.join(card_divs))

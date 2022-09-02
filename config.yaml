@@ -13,5 +13,4 @@ scripts:
   - src/script.js
 
 content:
-  - src/favicon.png
   - src/images/picture_to_draw.png

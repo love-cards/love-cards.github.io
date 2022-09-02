@@ -238,7 +238,7 @@ $("#cards").on("tapend", function(e, touch) {
     let delta_x_abs = Math.abs(swipe_delta_x)
     let anchor_card_ind = 0
 
-    if (delta_x_abs >= card_width * 0.3) {
+    if (delta_x_abs >= card_width * 0.2) {
       let dir = Math.sign(swipe_delta_x)
       let cards_scrolled = 1 + Math.floor(delta_x_abs / card_width)
       anchor_card_ind = Math.round(swipe_start_scroll_x / card_width) + cards_scrolled * dir
