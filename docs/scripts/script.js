@@ -4,6 +4,7 @@ const card_max_width = 435;
 const card_fold_translate = 250
 
 card_width = 1;
+card_number = 0;
 
 view_width = 1;
 view_height = 1;
@@ -25,6 +26,7 @@ update_cards_alignment()
 if(window.location.hash) {
   n = parseInt(window.location.hash.substring(1));
   if (!isNaN(n)) {
+    card_number = n
     $("#cards").scrollLeft(n * card_width)
   }
 }
@@ -32,9 +34,26 @@ if(window.location.hash) {
 addEventListener('hashchange', (event) => {
   n = parseInt(window.location.hash.substring(1));
   if (!isNaN(n)) {
+    card_number = n
     $("#cards").animate({'scrollLeft': n * card_width}, 200 * Math.sqrt(n));
   }
 });
+
+
+// Animate cards slide in
+
+cards.each(function(i) {
+    let card = this
+    let number = Math.max(1, i - card_number)
+
+    setTimeout(function() {
+        $(card).css("animation", "0.7s ease 0s 1 slideIn")
+    }, number * 100)
+
+    setTimeout(function() {
+        $(card).css("opacity", "1")
+    }, (number + 1) * 100)
+})
 
 
 // On window resized
@@ -156,7 +175,7 @@ swipe_delta_x = 0
 swipe_delta_y = 0
 
 
-cards.each(function() {
+cards.each(function(number) {
   let card = this
   let header = $(card).find(".header")
 
@@ -178,7 +197,7 @@ cards.each(function() {
     if (!swipe_started) {
       return
     }
-    
+
     swipe_delta_x = swipe_start_x - touch.position.x
     swipe_delta_y = swipe_start_y - touch.position.y
     
@@ -238,7 +257,7 @@ $("#cards").on("tapend", function(e, touch) {
           opacity: 1,
           transform: "scale(1)" 
         })
-        setTimeout(function() { $(header).css("translation", "none")}, 200)
+        setTimeout(function() { $(header).css("transition", "none")}, 200)
       })
     })
   }
