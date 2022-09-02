@@ -20,6 +20,23 @@ cards.each(function() {
 update_cards_alignment()
 
 
+// Scroll to card on hash
+
+if(window.location.hash) {
+  n = parseInt(window.location.hash.substring(1));
+  if (!isNaN(n)) {
+    $("#cards").scrollLeft(n * card_width)
+  }
+}
+
+addEventListener('hashchange', (event) => {
+  n = parseInt(window.location.hash.substring(1));
+  if (!isNaN(n)) {
+    $("#cards").animate({'scrollLeft': n * card_width}, 200 * Math.sqrt(n));
+  }
+});
+
+
 // On window resized
 
 $(window).resize(function() {
@@ -178,7 +195,7 @@ cards.each(function() {
             
       // Animate cards swap
       // let opacity_time = 1 - Math.min(1, delta_x_abs / (card_width * 4))
-      let scale = 1 - Math.min(1, delta_x_abs / (card_width * 8)) 
+      let scale = 1 - Math.min(0.2, delta_x_abs / (card_width * 10)) 
       
       // $(this).css("opacity", opacity_time)
       $(this).css("transform", `scale(${scale})`)
