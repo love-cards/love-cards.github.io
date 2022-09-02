@@ -1,5 +1,5 @@
 
-output_dir: dist/
+output_dir: docs/
 cards_dir: cards/
 
 patterns:
