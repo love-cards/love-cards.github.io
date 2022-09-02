@@ -25,13 +25,14 @@ class WebCardsBuilder:
         self.output_dir = output_dir
 
     def build(self):
-        if os.path.exists(self.output_dir):
-            shutil.rmtree(self.output_dir)
-
-        os.mkdir(self.output_dir)
+        if not os.path.exists(self.output_dir):
+            os.mkdir(self.output_dir)
 
         for path in ("styles", "scripts", "content"):
-            os.mkdir(os.path.join(self.output_dir, path))
+            path = os.path.join(self.output_dir, path)
+            if os.path.exists(path):
+                shutil.rmtree(path)
+            os.mkdir(path)
 
         for category in self._generate_categories():
             category.write(self.output_dir)
